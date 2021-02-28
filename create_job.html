@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enter Job Data</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+
+        $(function () {
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('#txtDate').attr('min', maxDate);
+        });
+
+        function Calculator() {
+            var title = document.forms["RegForm"]["Title"];
+            var desc = document.forms["RegForm"]["Desc"];
+
+
+
+            if (title.value == "") {
+                window.alert("Please enter your title.");
+                title.focus();
+                return false;
+            }
+
+            if (desc.value == "") {
+                window.alert("Please enter description");
+                desc.focus();
+                return false;
+            }
+
+            return true;
+        } 
+    </script>
+
+</head>
+
+<body>
+    <div class="register-box">
+        <h1></h1>
+        <fieldset>
+            <legend>Create Job:</legend>
+            <form name="RegForm" action="create_job.html" onsubmit="return Calculator()" method="post">
+
+                <table>
+                    <tr>
+                        <td>Title:</td>
+                        <td><input type="text" name="Title" pattern="^[A-Z a-z]+$" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Type:</td>
+                        <td>
+                            <select id="job_type" name="Job_type" required>
+                                <option value="">None</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Full-time">Full-time</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Department:</td>
+                        <td>
+                            <select id="dept" name="Dept" required>
+                                <option value="">None</option>
+                                <option value="CS">CS</option>
+                                <option value="IT">IT</option>
+                                <option value="ENTC">ENTC</option>
+                                <option value="MECH">MECH</option>
+
+
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Country:</td>
+                        <td>
+                            <select id="ctrs" name="Country" required>
+                                <option value="">None</option>
+                                <option value="US">US</option>
+                                <option value="UK">UK</option>
+                                <option value="INDIA">INDIA</option>
+                                <option value="FINLAND">FINLAND</option>
+
+
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Description:</td>
+                        <td><textarea name="Desc" required></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Opening date:</td>
+                        <td><input type="date" id="txtDate" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="submit" value="send" name="Submit" />
+                        </td>
+                    </tr>
+
+
+                </table>
+
+            </form>
+
+        </fieldset>
+
+    </div>
+
+</body>
+
+</html>
